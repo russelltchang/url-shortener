@@ -4,9 +4,7 @@ var appUrl = 'https://lit-headland-86744.herokuapp.com/';
 var MongoClient = require('mongodb').MongoClient;
 var path = require('path');
 
-app.use('/', express.static(__dirname + '/public'));
-
-MongoClient.connect('mongodb://russelltchang@gmail.com:urlshort7!@ds237409.mlab.com:37409/urlshortdb', function(err, db) {
+MongoClient.connect('mongodb://russelltchang:urlshort7!@ds237409.mlab.com:37409/urlshortdb', function(err, db) {
 
     app.get('/', function(req, res) {
         res.sendFile(path.join(__dirname + '/public/index.html'));
