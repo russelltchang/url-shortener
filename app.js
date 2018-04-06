@@ -1,13 +1,15 @@
 var express = require('express');
 var app = express();
-var appUrl = 'https://lit-headland-86744.herokuapp.com';
+var appUrl = 'https://lit-headland-86744.herokuapp.com/';
 var MongoClient = require('mongodb').MongoClient;
 var path = require('path');
+
+app.use('/', express.static(__dirname + '/public'));
 
 MongoClient.connect('mongodb://russelltchang@gmail.com:urlshort7!@ds237409.mlab.com:37409/urlshortdb', function(err, db) {
 
     app.get('/', function(req, res) {
-        res.sendFile(path.join(__dirname + /index.html);
+        res.sendFile(path.join(__dirname + '/public/index.html'));
     });
 
     app.get('/new/:longUrl(*)', function(req, res) {
