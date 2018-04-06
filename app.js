@@ -1,11 +1,14 @@
 var express = require('express');
 var app = express();
-var appUrl = 'localhost:3000/';
+var appUrl = 'https://lit-headland-86744.herokuapp.com';
 var MongoClient = require('mongodb').MongoClient;
 
-MongoClient.connect('mongodb://localhost:27017/urlshort', function(err, database) {
-    
-    var db = database.db('urlshortdb')
+MongoClient.connect('mongodb://russelltchang@gmail.com:urlshort7!@ds237409.mlab.com:37409/urlshortdb', function(err, db) {
+
+    app.get('/', function(req, res) {
+        res.sendFile(index.html);
+    })
+
     app.get('/new/:longUrl(*)', function(req, res) {
         var longUrl = req.params.longUrl;
         var uniqueId = new Date().getTime();
