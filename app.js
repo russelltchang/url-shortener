@@ -35,7 +35,7 @@ MongoClient.connect('mongodb://russelltchang:hackstack13!@ds237409.mlab.com:3740
         var uniqueId = req.params.uniqueId;
 
         db.collection('urlshort').find({
-            "uniqueId" : uniqueId
+            "uniqueId" : uniqueId.toString()
         }).toArray(function(err, data) {
             if (err) console.log('Error finding shortened URL');
             if (data.length == 0) {
