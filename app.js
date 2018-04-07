@@ -16,7 +16,7 @@ var path = require('path');
             var uniqueId = new Date().getTime();
             uniqueId = uniqueId.toString();
             uniqueid = uniqueId.slice(0, -2);
-            var shortUrl = appUrl + String(uniqueId);
+            var shortUrl = appUrl + uniqueId;
 
             db.collection('urlshort').insert({
                 "longUrl" : longUrl,
