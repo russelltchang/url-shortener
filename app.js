@@ -6,6 +6,7 @@ var path = require('path');
 
 MongoClient.connect('mongodb://russelltchang:hackstack13!@ds237409.mlab.com:37409/urlshortdb', function(err, database) {
     var db = database.db('urlshortdb');
+
     app.get('/', function(req, res) {
         res.sendFile(path.join(__dirname + '/public/index.html'));
     });
@@ -40,8 +41,11 @@ MongoClient.connect('mongodb://russelltchang:hackstack13!@ds237409.mlab.com:3740
             if (data.length == 0) {
                 console.log('No short URL matching this one in the database')
             }
-            console.log(data[0].longUrl);
-            res.redirect(data[0].longUrl);
+            var l = data[0].longUrl;
+            if (l.indexOf("http") == -1) {
+                l = "http://" + l;
+            }
+            res.redirect(l);
         });
     });
 }); //end MongoDB connection
