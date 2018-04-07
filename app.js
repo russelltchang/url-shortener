@@ -1,17 +1,17 @@
 var express = require('express');
 var app = express();
-var appUrl = 'https://lit-headland-86744.herokuapp.com/';
+var appUrl = 'localhost:3000/';
 var MongoClient = require('mongodb').MongoClient;
 var path = require('path');
 
 MongoClient.connect('mongodb://russelltchang:hackstack13!@ds237409.mlab.com:37409/urlshortdb', function(err, database) {
-    var db = database.db('urlshortdb');
 
     app.get('/', function(req, res) {
         res.sendFile(path.join(__dirname + '/public/index.html'));
     });
 
     app.get('/new/:longUrl(*)', function(req, res) {
+        var db = database.db('urlshortdb');
         var longUrl = req.params.longUrl;
         var uniqueId = new Date().getTime();
         uniqueId = uniqueId.toString();
@@ -31,9 +31,10 @@ MongoClient.connect('mongodb://russelltchang:hackstack13!@ds237409.mlab.com:3740
         })
     });
 
-    //heroku may be reading this when you get '/' route.  Success all the way up to here which will then cause error, and then the first page will now error upon subsequent deployment
+    //heroku also reading this on simple '/' request, causing console message and unable to read longUrl
     app.get('/:uniqueId', function(req, res) {
         var uniqueId = req.params.uniqueId;
+        var db = database.db('urlshortdb');
 
         db.collection('urlshort').find({
             "uniqueId" : uniqueId
