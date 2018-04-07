@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var appUrl = 'localhost:3000/';
+var appUrl = 'https://lit-headland-86744.herokuapp.com/';
 var MongoClient = require('mongodb').MongoClient;
 var path = require('path');
 
@@ -31,7 +31,7 @@ MongoClient.connect('mongodb://russelltchang:hackstack13!@ds237409.mlab.com:3740
         })
     });
 
-    //heroku also reading this on simple '/' request, causing console message and unable to read longUrl
+    //heroku reads this on '/' request, causing console message and unable to read longUrl msg
     app.get('/:uniqueId', function(req, res) {
         var uniqueId = req.params.uniqueId;
         var db = database.db('urlshortdb');
