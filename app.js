@@ -31,6 +31,7 @@ MongoClient.connect('mongodb://russelltchang:hackstack13!@ds237409.mlab.com:3740
         })
     });
 
+    //heroku may be reading this when you get '/' route.  Success all the way up to here which will then cause error, and then the first page will now error upon subsequent deployment
     app.get('/:uniqueId', function(req, res) {
         var uniqueId = req.params.uniqueId;
 
