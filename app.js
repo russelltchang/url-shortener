@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var url = 'process.env.MONGOLAB_URI';
+var url = process.env.MONGOLAB_URI;
 var appUrl = 'https://lit-headland-86744.herokuapp.com/';
 var MongoClient = require('mongodb').MongoClient;
 var path = require('path');
